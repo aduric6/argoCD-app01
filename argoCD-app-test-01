@@ -1,20 +1,15 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
-  name: guestbook-ui
+  creationTimestamp: null
+  labels:
+    run: nginx
+  name: nginx
 spec:
-  replicas: 1
-  revisionHistoryLimit: 3
-  selector:
-    matchLabels:
-      app: guestbook-ui
-  template:
-    metadata:
-      labels:
-        app: guestbook-ui
-    spec:
-      containers:
-      - image: gcr.io/heptio-images/ks-guestbook-demo:0.2
-        name: guestbook-ui
-        ports:
-        - containerPort: 80
+  containers:
+  - image: nginx
+    name: nginx
+    resources: {}
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+status: {}
